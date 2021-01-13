@@ -1,0 +1,317 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     11688,        308]
+NotebookOptionsPosition[     10678,        268]
+NotebookOutlinePosition[     11016,        283]
+CellTagsIndexPosition[     10973,        280]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8195023584570713`*^9, 3.819502397881628*^9}, {
+  3.819502558999126*^9, 3.819502727505142*^9}, {3.8195028938074512`*^9, 
+  3.819502894306137*^9}, {3.819503045485608*^9, 3.819503058156085*^9}, {
+  3.819503118330139*^9, 3.819503125273979*^9}, {3.819505525276146*^9, 
+  3.819505551949005*^9}}],
+
+Cell[BoxData[
+ RowBox[{"sarsv1", " ", "=", " ", 
+  RowBox[{"StringReplace", "[", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<./data/sarsv1\>\"", ",", " ", "\"\<Text\>\""}], "]"}], ",", 
+    " ", 
+    RowBox[{
+     RowBox[{"RegularExpression", "[", "\"\<[ \\n0123456789]\>\"", "]"}], 
+     "->", "\"\<\>\""}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.81950570576549*^9, 3.819505710277017*^9}}],
+
+Cell[BoxData[
+ RowBox[{"sarsv2", " ", "=", " ", 
+  RowBox[{"StringReplace", "[", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<./data/sarsv2\>\"", ",", " ", "\"\<Text\>\""}], "]"}], ",", 
+    " ", 
+    RowBox[{
+     RowBox[{"RegularExpression", "[", "\"\<[ \\n0123456789]\>\"", "]"}], 
+     "->", "\"\<\>\""}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.819505550207942*^9, 3.819505693807917*^9}, {
+  3.819506831221499*^9, 3.819506836217*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"codons", " ", "=", 
+  RowBox[{"StringSplit", "[", 
+   RowBox[{
+    RowBox[{"Import", "[", 
+     RowBox[{"\"\<./data/codons\>\"", ",", " ", "\"\<Text\>\""}], "]"}], ",", 
+    " ", "\"\<\\n\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.819506841310301*^9, 3.819506901788435*^9}, {
+  3.819506988179644*^9, 3.8195069895141068`*^9}, {3.819507711218527*^9, 
+  3.819507712698008*^9}, {3.819510404145043*^9, 3.8195104188420267`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"A : GCT GCC GCA GCG\"\>", ",", "\<\"I : ATT ATC ATA\"\>", 
+   ",", "\<\"R : CGT CGC CGA CGG AGA AGG\"\>", 
+   ",", "\<\"L : CTT CTC CTA CTG TTA TTG\"\>", ",", "\<\"N : AAT AAC\"\>", 
+   ",", "\<\"K : AAA AAG\"\>", ",", "\<\"D : GAT GAC\"\>", 
+   ",", "\<\"M : ATG\"\>", ",", "\<\"F : TTT TTC\"\>", 
+   ",", "\<\"C : TGT TGC\"\>", ",", "\<\"P : CCT CCC CCA CCG\"\>", 
+   ",", "\<\"Q : CAA CAG\"\>", ",", "\<\"S : TCT TCC TCA TCG AGT AGC\"\>", 
+   ",", "\<\"E : GAA GAG\"\>", ",", "\<\"T : ACT ACC ACA ACG\"\>", 
+   ",", "\<\"W : TGG\"\>", ",", "\<\"G : GGT GGC GGA GGG\"\>", 
+   ",", "\<\"Y : TAT TAC\"\>", ",", "\<\"H : CAT CAC\"\>", 
+   ",", "\<\"V : GTT GTC GTA GTG\"\>", ",", "\<\"* : TAA TGA TAG\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.819510427445187*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"StringLength", "[", "sarsv2", "]"}], ",", " ", 
+   RowBox[{"StringLength", "[", "sarsv1", "]"}]}], "}"}]], "Input",
+ CellChangeTimes->{{3.819505819044283*^9, 3.819505826259252*^9}, {
+  3.8195058608793917`*^9, 3.8195058733233843`*^9}, {3.819506033876569*^9, 
+  3.819506103609212*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"29903", ",", "29751"}], "}"}]], "Output",
+ CellChangeTimes->{3.81950610438702*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DamerauLevenshteinDistance", "[", 
+  RowBox[{"sarsv1", ",", "sarsv2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8195061583737698`*^9, 3.8195061905867043`*^9}}],
+
+Cell[BoxData["5920"], "Output",
+ CellChangeTimes->{{3.8195061991724052`*^9, 3.819506206881831*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringLength", "[", 
+  RowBox[{"Compress", "[", "sarsv2", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8195062475149117`*^9, 3.819506308468356*^9}, {
+  3.8195065219082613`*^9, 3.8195065260668783`*^9}}],
+
+Cell[BoxData["11842"], "Output",
+ CellChangeTimes->{{3.819506253725712*^9, 3.819506310448122*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"decoder", " ", "=", " ", 
+  RowBox[{"<|", "|>"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", " ", 
+    RowBox[{"i", "<=", 
+     RowBox[{"Length", "[", "codons", "]"}]}], ",", " ", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"k", "=", 
+      RowBox[{
+       RowBox[{"StringSplit", "[", 
+        RowBox[{
+         RowBox[{"codons", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", " ", "\"\<:\>\""}], "]"}], " ",
+        "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ";", " ", 
+     RowBox[{"v", "=", 
+      RowBox[{"StringSplit", "[", 
+       RowBox[{
+        RowBox[{"StringReplace", "[", 
+         RowBox[{
+          RowBox[{"ToLowerCase", "[", 
+           RowBox[{
+            RowBox[{"StringSplit", "[", 
+             RowBox[{
+              RowBox[{"codons", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", " ", "\"\<:\>\""}], "]"}],
+             " ", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", " ", 
+          RowBox[{"\"\<u\>\"", "->", "\"\<t\>\""}]}], "]"}], ",", " ", 
+        "\"\< \>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"j", "=", "1"}], ",", " ", 
+       RowBox[{"j", "<=", 
+        RowBox[{"Length", "[", "v", "]"}]}], ",", " ", 
+       RowBox[{"j", "++"}], ",", " ", 
+       RowBox[{"decoder", " ", "=", " ", 
+        RowBox[{"Append", "[", 
+         RowBox[{"decoder", ",", 
+          RowBox[{
+           RowBox[{"v", "[", 
+            RowBox[{"[", "j", "]"}], "]"}], "\[Rule]", "k"}]}], "]"}]}]}], 
+      "]"}]}]}], "\[IndentingNewLine]", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "decoder"}], "Input",
+ CellChangeTimes->{{3.819506484005704*^9, 3.8195064940194263`*^9}, {
+  3.819510812518478*^9, 3.819510821348028*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.8195108226928053`*^9}],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"gct\"\>", "\[Rule]", "\<\"A \"\>"}], ",", 
+   RowBox[{"\<\"gcc\"\>", "\[Rule]", "\<\"A \"\>"}], ",", 
+   RowBox[{"\<\"gca\"\>", "\[Rule]", "\<\"A \"\>"}], ",", 
+   RowBox[{"\<\"gcg\"\>", "\[Rule]", "\<\"A \"\>"}], ",", 
+   RowBox[{"\<\"att\"\>", "\[Rule]", "\<\"I \"\>"}], ",", 
+   RowBox[{"\<\"atc\"\>", "\[Rule]", "\<\"I \"\>"}], ",", 
+   RowBox[{"\<\"ata\"\>", "\[Rule]", "\<\"I \"\>"}], ",", 
+   RowBox[{"\<\"cgt\"\>", "\[Rule]", "\<\"R \"\>"}], ",", 
+   RowBox[{"\<\"cgc\"\>", "\[Rule]", "\<\"R \"\>"}], ",", 
+   RowBox[{"\<\"cga\"\>", "\[Rule]", "\<\"R \"\>"}], ",", 
+   RowBox[{"\<\"cgg\"\>", "\[Rule]", "\<\"R \"\>"}], ",", 
+   RowBox[{"\<\"aga\"\>", "\[Rule]", "\<\"R \"\>"}], ",", 
+   RowBox[{"\<\"agg\"\>", "\[Rule]", "\<\"R \"\>"}], ",", 
+   RowBox[{"\<\"ctt\"\>", "\[Rule]", "\<\"L \"\>"}], ",", 
+   RowBox[{"\<\"ctc\"\>", "\[Rule]", "\<\"L \"\>"}], ",", 
+   RowBox[{"\<\"cta\"\>", "\[Rule]", "\<\"L \"\>"}], ",", 
+   RowBox[{"\<\"ctg\"\>", "\[Rule]", "\<\"L \"\>"}], ",", 
+   RowBox[{"\<\"tta\"\>", "\[Rule]", "\<\"L \"\>"}], ",", 
+   RowBox[{"\<\"ttg\"\>", "\[Rule]", "\<\"L \"\>"}], ",", 
+   RowBox[{"\<\"aat\"\>", "\[Rule]", "\<\"N \"\>"}], ",", 
+   RowBox[{"\<\"aac\"\>", "\[Rule]", "\<\"N \"\>"}], ",", 
+   RowBox[{"\<\"aaa\"\>", "\[Rule]", "\<\"K \"\>"}], ",", 
+   RowBox[{"\<\"aag\"\>", "\[Rule]", "\<\"K \"\>"}], ",", 
+   RowBox[{"\<\"gat\"\>", "\[Rule]", "\<\"D \"\>"}], ",", 
+   RowBox[{"\<\"gac\"\>", "\[Rule]", "\<\"D \"\>"}], ",", 
+   RowBox[{"\<\"atg\"\>", "\[Rule]", "\<\"M \"\>"}], ",", 
+   RowBox[{"\<\"ttt\"\>", "\[Rule]", "\<\"F \"\>"}], ",", 
+   RowBox[{"\<\"ttc\"\>", "\[Rule]", "\<\"F \"\>"}], ",", 
+   RowBox[{"\<\"tgt\"\>", "\[Rule]", "\<\"C \"\>"}], ",", 
+   RowBox[{"\<\"tgc\"\>", "\[Rule]", "\<\"C \"\>"}], ",", 
+   RowBox[{"\<\"cct\"\>", "\[Rule]", "\<\"P \"\>"}], ",", 
+   RowBox[{"\<\"ccc\"\>", "\[Rule]", "\<\"P \"\>"}], ",", 
+   RowBox[{"\<\"cca\"\>", "\[Rule]", "\<\"P \"\>"}], ",", 
+   RowBox[{"\<\"ccg\"\>", "\[Rule]", "\<\"P \"\>"}], ",", 
+   RowBox[{"\<\"caa\"\>", "\[Rule]", "\<\"Q \"\>"}], ",", 
+   RowBox[{"\<\"cag\"\>", "\[Rule]", "\<\"Q \"\>"}], ",", 
+   RowBox[{"\<\"tct\"\>", "\[Rule]", "\<\"S \"\>"}], ",", 
+   RowBox[{"\<\"tcc\"\>", "\[Rule]", "\<\"S \"\>"}], ",", 
+   RowBox[{"\<\"tca\"\>", "\[Rule]", "\<\"S \"\>"}], ",", 
+   RowBox[{"\<\"tcg\"\>", "\[Rule]", "\<\"S \"\>"}], ",", 
+   RowBox[{"\<\"agt\"\>", "\[Rule]", "\<\"S \"\>"}], ",", 
+   RowBox[{"\<\"agc\"\>", "\[Rule]", "\<\"S \"\>"}], ",", 
+   RowBox[{"\<\"gaa\"\>", "\[Rule]", "\<\"E \"\>"}], ",", 
+   RowBox[{"\<\"gag\"\>", "\[Rule]", "\<\"E \"\>"}], ",", 
+   RowBox[{"\<\"act\"\>", "\[Rule]", "\<\"T \"\>"}], ",", 
+   RowBox[{"\<\"acc\"\>", "\[Rule]", "\<\"T \"\>"}], ",", 
+   RowBox[{"\<\"aca\"\>", "\[Rule]", "\<\"T \"\>"}], ",", 
+   RowBox[{"\<\"acg\"\>", "\[Rule]", "\<\"T \"\>"}], ",", 
+   RowBox[{"\<\"tgg\"\>", "\[Rule]", "\<\"W \"\>"}], ",", 
+   RowBox[{"\<\"ggt\"\>", "\[Rule]", "\<\"G \"\>"}], ",", 
+   RowBox[{"\<\"ggc\"\>", "\[Rule]", "\<\"G \"\>"}], ",", 
+   RowBox[{"\<\"gga\"\>", "\[Rule]", "\<\"G \"\>"}], ",", 
+   RowBox[{"\<\"ggg\"\>", "\[Rule]", "\<\"G \"\>"}], ",", 
+   RowBox[{"\<\"tat\"\>", "\[Rule]", "\<\"Y \"\>"}], ",", 
+   RowBox[{"\<\"tac\"\>", "\[Rule]", "\<\"Y \"\>"}], ",", 
+   RowBox[{"\<\"cat\"\>", "\[Rule]", "\<\"H \"\>"}], ",", 
+   RowBox[{"\<\"cac\"\>", "\[Rule]", "\<\"H \"\>"}], ",", 
+   RowBox[{"\<\"gtt\"\>", "\[Rule]", "\<\"V \"\>"}], ",", 
+   RowBox[{"\<\"gtc\"\>", "\[Rule]", "\<\"V \"\>"}], ",", 
+   RowBox[{"\<\"gta\"\>", "\[Rule]", "\<\"V \"\>"}], ",", 
+   RowBox[{"\<\"gtg\"\>", "\[Rule]", "\<\"V \"\>"}], ",", 
+   RowBox[{"\<\"taa\"\>", "\[Rule]", "\<\"* \"\>"}], ",", 
+   RowBox[{"\<\"tga\"\>", "\[Rule]", "\<\"* \"\>"}], ",", 
+   RowBox[{"\<\"tag\"\>", "\[Rule]", "\<\"* \"\>"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.819510822696166*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"translate", "[", 
+   RowBox[{"x", ",", " ", "protein"}], "]"}], "=", 
+  RowBox[{"{", 
+   RowBox[{"0", ",", "false"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.819511052558133*^9, 3.81951108777243*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", "false"}], "}"}]], "Output",
+ CellChangeTimes->{3.819511088794197*^9}]
+}, Open  ]]
+},
+WindowSize->{1137, 727},
+WindowMargins->{{-10, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 416, 7, 31, "Input"],
+Cell[977, 29, 409, 10, 31, "Input"],
+Cell[1389, 41, 456, 11, 31, "Input"],
+Cell[CellGroupData[{
+Cell[1870, 56, 452, 9, 31, "Input"],
+Cell[2325, 67, 814, 14, 92, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3176, 86, 335, 7, 31, "Input"],
+Cell[3514, 95, 122, 3, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3673, 103, 182, 3, 31, "Input"],
+Cell[3858, 108, 99, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3994, 114, 226, 4, 31, "Input"],
+Cell[4223, 120, 98, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4358, 126, 1870, 49, 172, "Input"],
+Cell[6231, 177, 124, 2, 31, "Output"],
+Cell[6358, 181, 3909, 68, 132, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10304, 254, 236, 6, 31, "Input"],
+Cell[10543, 262, 119, 3, 31, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
